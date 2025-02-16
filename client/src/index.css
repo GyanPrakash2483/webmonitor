@@ -3,3 +3,7 @@
 button {
     cursor: pointer;
 }
+
+:root {
+    background-color: #F3FFFB;
+}
