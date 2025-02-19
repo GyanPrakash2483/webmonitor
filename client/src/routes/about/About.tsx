@@ -3,9 +3,9 @@ import Navbar from "../../components/Navbar"
 import CallToAction from "../../components/CallToAction"
 import Footer from "../../components/Footer"
 
-function AboutHome() {
+function HeroAbout() {
     return (
-        <div className="bg-[url('/source-code.jpg')] h-[400px] flex flex-col items-center">
+        <div className="bg-[url('/code2.png')] h-[400px] flex flex-col items-center">
             <Navbar />
             <h1 className="text-white mt-10 text-3xl p-2 text-center mb-10 md:text-4xl md:font-bold">Your Website Guardian</h1>
             <WMButton text="GET STARTED"/>
@@ -34,7 +34,7 @@ function Approaches(props: {
 }) {
     return (
         <div className="min-md:w-[30%]">
-            <h3 className="text-lg">{props.title}</h3>
+            <h3 className="text-lg">{props.title}</h3><br />
             <p className="text-[#535353]">{props.description}</p>
         </div>
     )
@@ -61,7 +61,7 @@ function Approach() {
 export default function About() {
     return (
         <>
-            <AboutHome />
+            <HeroAbout />
             <Story />
             <Approach />
             <CallToAction />
