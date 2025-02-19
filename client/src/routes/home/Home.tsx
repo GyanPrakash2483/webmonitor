@@ -83,7 +83,7 @@ function Choice(props: {
 
 function WhyChoose() {
     return (
-        <div className="flex max-md:flex-col p-6 min-md:px-80 gap-40 max-md:gap-10 pt-10 bg-white">
+        <div className="flex max-md:flex-col p-6 min-md:px-80 justify-around max-md:gap-10 pt-10 bg-white">
             <div className="min-md:w-[50%] flex flex-col gap-5 min-md:min-w-[335px]">
                 <span className="text-[#00B4AB]">WHY CHOOSE US</span>
                 <h2 className="text-3xl">Why Choose Webmonitor for Your Business?</h2>
