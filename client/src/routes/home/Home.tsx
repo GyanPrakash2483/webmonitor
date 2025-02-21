@@ -16,7 +16,7 @@ function HeroHome() {
 
 function About() {
     return (
-        <div className="bg-white w-[50%] mx-auto max-md:w-full -mt-16 flex max-md:flex-col-reverse max-w-[790px] min-md:min-w-[781px]">
+        <div className="bg-white w-[50%] mx-auto max-md:w-full -mt-16 flex max-md:flex-col-reverse max-w-[790px] min-md:min-w-[781px] shadow-2xl">
             <div className="left-section p-4 w-[50%] max-md:w-full pt-12 max-md:pt-8">
                 <span className="text-[#00B4AB]">ABOUT US</span>
                 <h2 className="text-2xl my-1">Discover Webmonitor's Commitment to Excellence</h2>

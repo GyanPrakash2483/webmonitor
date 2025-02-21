@@ -6,11 +6,12 @@ function NavBtn(prop: {
     className?: string,
 }) {
     return (
-        <button onClick={() => {
-            location.href = prop.url
-        }} className={prop.className}>
-            {prop.text}
-        </button>
+        // <button onClick={() => {
+        //     location.href = prop.url
+        // }} className={prop.className}>
+        //     {prop.text}
+        // </button>
+        <a href={prop.url} className={prop.className + " inline-block"}>{prop.text}</a>
     )
 }
 
