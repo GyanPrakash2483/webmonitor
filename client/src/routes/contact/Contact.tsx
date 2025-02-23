@@ -31,7 +31,7 @@ function ContactForm() {
 
     const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        let data = {
+        const data = {
             name,
             email,
             message

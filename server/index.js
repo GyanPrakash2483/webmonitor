@@ -3,9 +3,9 @@ import { configDotenv } from 'dotenv'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-configDotenv()
-const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+configDotenv({path: path.join(__dirname, '.env')})
+const app = express()
 
 app.get('/message', (_, res) => {
     res.send('<h1>It Works</h1>')
