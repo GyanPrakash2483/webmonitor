@@ -11,6 +11,10 @@ import TheArtOfDrawingReadersIn from './routes/blog/the-art-of-drawing-readers-i
 import CraftingCaptivatingHeadlines from './routes/blog/crafting-captivating-headlines.tsx'
 import Contact from './routes/contact/Contact.tsx'
 import { AnimatePresence, motion } from 'framer-motion';
+import Dashboard from './routes/dashboard/Dashboard.tsx'
+import TermsOfService from './routes/page/terms-of-service.tsx'
+import PrivacyPolicy from './routes/page/privacy-policy.tsx'
+import Register from './routes/register/Register.tsx'
 
 const pageVariants = {
   initial: { opacity: 0, y: 10 },
@@ -32,6 +36,10 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/blog/the-art-of-drawing-readers-in" element={<motion.div {...pageVariants}><TheArtOfDrawingReadersIn /></motion.div>} />
         <Route path="/blog/crafting-captivating-headlines" element={<motion.div {...pageVariants}><CraftingCaptivatingHeadlines /></motion.div>} />
         <Route path="/contact" element={<motion.div {...pageVariants}><Contact /></motion.div>} />
+        <Route path="/dashboard" element={<motion.div {...pageVariants}><Dashboard /></motion.div>} />
+        <Route path="/register" element={<motion.div {...pageVariants}><Register /></motion.div>} />
+        <Route path="/pages/terms-of-service" element={<motion.div {...pageVariants}><TermsOfService /></motion.div>} />
+        <Route path="/pages/privacy-policy" element={<motion.div {...pageVariants}><PrivacyPolicy /></motion.div>} />
       </Routes>
     </AnimatePresence>
     </BrowserRouter>
