@@ -12,8 +12,8 @@ import CraftingCaptivatingHeadlines from './routes/blog/crafting-captivating-hea
 import Contact from './routes/contact/Contact.tsx'
 import { AnimatePresence, motion } from 'framer-motion';
 import Dashboard from './routes/dashboard/Dashboard.tsx'
-import TermsOfService from './routes/page/terms-of-service.tsx'
-import PrivacyPolicy from './routes/page/privacy-policy.tsx'
+import TermsOfService from './routes/pages/terms-of-service.tsx'
+import PrivacyPolicy from './routes/pages/privacy-policy.tsx'
 import Register from './routes/register/Register.tsx'
 
 const pageVariants = {
