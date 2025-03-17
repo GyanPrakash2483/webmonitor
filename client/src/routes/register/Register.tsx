@@ -41,10 +41,11 @@ function RegisterMain() {
 
             <div className="flex flex-col items-center justify-center gap-8">
                 <span className="text-xs text-[#8C8C8C]">OR</span>
-                <div className="flex justify-around items-center gap-4 bg-white border-[#D4D4D4] border-1 p-2 px-8 rounded-3xl cursor-pointer w-[80%]">
+                <div className="flex justify-around items-center gap-4 bg-white border-[#D4D4D4] border-1 p-2 px-8 rounded-3xl cursor-pointer w-[80%] hover:shadow-xl">
                     <img src="/google-logo.png" alt="Google Icon" />
                     Continue with Google
                 </div>
+                <a href="/login" className="text-blue-500">Already have an account?</a>
             </div>
 
         </div>
