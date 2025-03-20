@@ -1,8 +1,9 @@
-import React from "react";
-import AppBar from "../../components/AppBar";
-import AppFooter from "../../components/AppFooter";
-import AppTitle from "../../components/AppTitle";
-import WMButton from "../../components/WMButton";
+import React from 'react'
+import AppBar from '../../components/AppBar'
+import AppFooter from '../../components/AppFooter'
+import AppTitle from '../../components/AppTitle'
+import WMButton from '../../components/WMButton'
+import { ToastContainer, toast, Bounce } from 'react-toastify'
 
 function InputError(props: {
     error: string | null
@@ -83,9 +84,85 @@ function RegisterMain() {
                 password
             })
         })
-        const response = await request.json()
+        const response: {
+            success: boolean,
+            rescode: number,
+            message: string
+        } = await request.json()
 
-        console.log(response);
+        /**
+         * 
+         * | Rescode      | Description                                            |
+         * | ------------ | ------------------------------------------------------ |
+         * | 6000         | Account Creation Successful, proceed for verification  |
+         * | 6001         | Input Format Error                                     |
+         * | 6002         | Username Already Exists                                |
+         * | 6003         | Email Already Registered, try logging in               |
+         * | 6004         | Unknown Server Error                                   |
+         * 
+         */
+
+        if(!response.rescode || response.rescode == 6004) {
+            toast.error('Unknown Server error, please report this incident', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
+        } else if(response.rescode == 6003) {
+            toast.warn('Email already registered, please try logging in', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        } else if(response.rescode == 6002) {
+            toast.warn('Username taken, please select another username', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        } else if(response.rescode == 6001) {
+            toast.warn('Input Format Error - suspected client modification', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        } else if(response.rescode == 6000) {
+            toast.success('Registration successful, please check your email.', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        }
 
     }
 
@@ -140,6 +217,7 @@ export default function Register() {
             <AppTitle title="Register" />
             <RegisterMain />
             <AppFooter />
+            <ToastContainer />
         </>
     )
 }

@@ -6,7 +6,7 @@ export default function WMButton(prop: {
 }) {
     
     return (
-        <button onClick={prop.clickHandler} className="w-100px text-[14px] bg-[#00B4AB] p-4 text-white font-bold">
+        <button onClick={prop.clickHandler} className="w-100px text-[14px] bg-[#00B4AB] p-4 text-white font-bold min-w-36">
             {prop.text}
         </button>
     )

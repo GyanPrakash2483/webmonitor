@@ -2,17 +2,19 @@ import express from 'express'
 import { configDotenv } from 'dotenv'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import dbConnect from './utils/dbconnect.js';
-import registerLocal from './routes/register/local.js';
+import dbConnect from './utils/dbconnect.js'
+import registerLocal from './routes/register/local.js'
+import cors from 'cors'
+import verifyAccount from './routes/verifyaccount.js'
 
 //configure environment
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 configDotenv()
 const app = express()
 app.use(express.json())
+app.use(cors()) // To be removed in production
 
 //connect to database
-
 dbConnect()
 
 // Test path to verify if api is working
@@ -23,7 +25,11 @@ app.get('/message', (_, res) => {
 // Routes
 
 app.post('/register/local', async (req, res) => {
-    await registerLocal(req, res);
+    registerLocal(req, res)
+})
+
+app.post('/verifyaccount', async (req, res) => {
+    verifyAccount(req, res)
 })
 
 // Routes End
