@@ -73,7 +73,7 @@ function RegisterMain() {
         }
 
         // Input is valid, proceed with registration
-        const request = await fetch('/register/local', {
+        const request = await fetch('/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -167,7 +167,7 @@ function RegisterMain() {
     }
 
     const googleAuthStrategy = () => {
-        
+        location.href = '/auth/google'
     }
 
     return (

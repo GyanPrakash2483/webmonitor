@@ -1,7 +1,7 @@
-import User from '../../models/UserSchema.js'
+import User from '../models/UserSchema.js'
 import crypto from 'node:crypto'
-import dbConnect from '../../utils/dbconnect.js'
-import sendEmail from '../../utils/email.js'
+import dbConnect from '../utils/dbconnect.js'
+import sendEmail from '../utils/email.js'
 
 const userNameRegex = /^[a-zA-Z0-9]+$/
 const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
@@ -74,6 +74,7 @@ export default async function registerLocal(req , res) {
         const passwordHash = crypto.pbkdf2Sync(password, salt, hashIterations, 512, 'sha512').toString('base64')
 
         const user = await User.create({
+            sub: crypto.randomBytes(16).toString('hex'),
             userName,
             email,
             additionalEmails: [
@@ -94,7 +95,7 @@ export default async function registerLocal(req , res) {
             message: 'Account created successfully'
         })
 
-        const account_verification_url = `${process.env.HOST}/verifyaccount?uid=${user._id}`
+        const account_verification_url = `${process.env.HOST}/auth/verifyaccount?uid=${user._id}`
 
         const emailBody = `
             <!DOCTYPE html>

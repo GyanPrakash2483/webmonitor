@@ -3,9 +3,11 @@ import { configDotenv } from 'dotenv'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import dbConnect from './utils/dbconnect.js'
-import registerLocal from './routes/register/local.js'
+import registerLocal from './auth/register.js'
 import cors from 'cors'
-import verifyAccount from './routes/verifyaccount.js'
+import verifyAccount from './auth/verifyaccount.js'
+import { googleAuth, googleAuthCallback } from './auth/google.js'
+import loginLocal from './auth/login.js'
 
 //configure environment
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -24,12 +26,24 @@ app.get('/message', (_, res) => {
 
 // Routes
 
-app.post('/register/local', async (req, res) => {
+app.post('/auth/register/', async (req, res) => {
     registerLocal(req, res)
 })
 
-app.post('/verifyaccount', async (req, res) => {
+app.post('/auth/verifyaccount', async (req, res) => {
     verifyAccount(req, res)
+})
+
+app.get('/auth/google', async (req, res) => {
+    googleAuth(req, res)
+})
+
+app.get('/auth/google/callback', async (req, res) => {
+    googleAuthCallback(req, res)
+})
+
+app.post('/auth/login', async (req, res) => {
+    loginLocal(req, res)
 })
 
 // Routes End
@@ -45,6 +59,5 @@ app.listen(process.env.PORT, (err) => {
         console.log(`Error: ${err.message}`)
     } else {
         console.log(`Listening on port ${process.env.PORT}`)
-        console.log(`http://localhost:${process.env.PORT}`)
     }
 })

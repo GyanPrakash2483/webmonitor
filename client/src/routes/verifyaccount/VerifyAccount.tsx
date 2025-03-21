@@ -77,7 +77,7 @@ function Verification() {
                 return
             }
 
-            const verifyreq = await fetch('/verifyaccount', {
+            const verifyreq = await fetch('/auth/verifyaccount', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

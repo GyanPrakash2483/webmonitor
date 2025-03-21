@@ -4,6 +4,10 @@ import dbConnect from "../utils/dbconnect.js"
 await dbConnect() // Make sure database is connected
 
 const UserSchema = new mongoose.Schema({
+    sub: {
+        type: String,
+        required: true
+    },
     userName: {
         type: String,
         unique: true
@@ -32,18 +36,9 @@ const UserSchema = new mongoose.Schema({
         default: []
     },
     password: {
-        salt: {
-            type: String,
-            required: true
-        },
-        passwordHash: {
-            type: String,
-            required: true
-        },
-        hashIterations: {
-            type: Number,
-            required: true
-        }
+        salt: String,
+        passwordHash: String,
+        hashIterations: String
     },
     verified: {
         type: Boolean,
