@@ -29,7 +29,7 @@ function LoginMain() {
     const emailErrorMessage = 'Not a valid email address.'
     const passwordErrorMessage = 'Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character (#?!@$%^&*-).'
 
-    const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         // Validate Input
         let isInputValid = true
@@ -53,7 +53,7 @@ function LoginMain() {
         }
 
         // Input is valid, proceed with registration
-        const request = await fetch('http://localhost:3000/auth/login', {
+        const request = await fetch('/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -66,7 +66,8 @@ function LoginMain() {
         const response: {
             success: boolean,
             rescode: number,
-            message: string
+            message: string,
+            auth_token?: string
         } = await request.json()
 
         if(response.rescode === 6001) {
@@ -153,8 +154,11 @@ function LoginMain() {
                 theme: 'light',
                 transition: Bounce,
             })
+            localStorage.setItem('auth_token', response.auth_token ?? '')
 
-            location.href = '/dashboard'
+            setTimeout(function() {
+                location.href = '/dashboard'
+            }, 3000)
         }
 
     }
@@ -165,7 +169,7 @@ function LoginMain() {
 
     return (
         <div className="bg-[#F5F5F5] max-w-[400px] mx-auto my-20 py-10 shadow-2xl">
-            <form className="py-6 px-10 flex flex-col gap-6 items-center" onSubmit={handleRegisterSubmit}>
+            <form className="py-6 px-10 flex flex-col gap-6 items-center" onSubmit={handleLoginSubmit}>
                 <div className="flex flex-col w-full">
                     <label className="text-sm" htmlFor="email">Email</label>
                     <input className="outline-none text-[#333333] p-1 border-[1px] rounded-[4px] border-[#A3A3A3] bg-white" type="text" name="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -175,6 +179,9 @@ function LoginMain() {
                     <label className="text-sm" htmlFor="password">Password</label>
                     <input className="outline-none text-[#333333] p-1 border-[1px] rounded-[4px] border-[#A3A3A3] bg-white" type="password" name="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
                     <InputError error={passwordError} />
+                </div>
+                <div className="w-full">
+                <a href="/forgotpassword" className="text-blue-500">Forgot Password?</a>
                 </div>
                 <WMButton text="Login" />
             </form>

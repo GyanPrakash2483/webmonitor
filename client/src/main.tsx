@@ -17,6 +17,8 @@ import PrivacyPolicy from './routes/pages/privacy-policy.tsx'
 import Register from './routes/register/Register.tsx'
 import VerifyAccount from './routes/verifyaccount/VerifyAccount.tsx'
 import Login from './routes/login/login.tsx'
+import ForgotPassword from './routes/forgotpassword/forgotpassword.tsx'
+import ResetPassword from './routes/resetpassword/resetpassword.tsx'
 
 const pageVariants = {
   initial: { opacity: 0, y: 10 },
@@ -44,6 +46,9 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/pages/privacy-policy" element={<motion.div {...pageVariants}><PrivacyPolicy /></motion.div>} />
         <Route path="/verifyaccount" element={<motion.div {...pageVariants}><VerifyAccount /></motion.div>} />
         <Route path="/login" element={<motion.div {...pageVariants}><Login /></motion.div>} />
+        <Route path="/forgotpassword" element={<motion.div {...pageVariants}><ForgotPassword /></motion.div>} />
+        <Route path="/resetpassword" element={<motion.div {...pageVariants}><ResetPassword /></motion.div>} />
+
       </Routes>
     </AnimatePresence>
     </BrowserRouter>

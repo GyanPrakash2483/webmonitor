@@ -52,6 +52,10 @@ const UserSchema = new mongoose.Schema({
     googleAccount: {
         type: Boolean,
         required: true
+    },
+    resetToken: {
+        type: String,
+        required: false
     }
 })
 

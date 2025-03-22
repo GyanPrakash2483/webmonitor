@@ -8,6 +8,8 @@ import cors from 'cors'
 import verifyAccount from './auth/verifyaccount.js'
 import { googleAuth, googleAuthCallback } from './auth/google.js'
 import loginLocal from './auth/login.js'
+import { forgotPassword } from './auth/forgotpassword.js'
+import { resetPassword } from './auth/resetpassword.js'
 
 //configure environment
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -44,6 +46,14 @@ app.get('/auth/google/callback', async (req, res) => {
 
 app.post('/auth/login', async (req, res) => {
     loginLocal(req, res)
+})
+
+app.post('/forgotpassword', async (req, res) => {
+    forgotPassword(req, res)
+})
+
+app.post('/resetpassword', async (req, res) => {
+    resetPassword(req, res)
 })
 
 // Routes End
