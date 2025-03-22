@@ -16,6 +16,7 @@ import TermsOfService from './routes/pages/terms-of-service.tsx'
 import PrivacyPolicy from './routes/pages/privacy-policy.tsx'
 import Register from './routes/register/Register.tsx'
 import VerifyAccount from './routes/verifyaccount/VerifyAccount.tsx'
+import Login from './routes/login/login.tsx'
 
 const pageVariants = {
   initial: { opacity: 0, y: 10 },
@@ -42,7 +43,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/pages/terms-of-service" element={<motion.div {...pageVariants}><TermsOfService /></motion.div>} />
         <Route path="/pages/privacy-policy" element={<motion.div {...pageVariants}><PrivacyPolicy /></motion.div>} />
         <Route path="/verifyaccount" element={<motion.div {...pageVariants}><VerifyAccount /></motion.div>} />
-
+        <Route path="/login" element={<motion.div {...pageVariants}><Login /></motion.div>} />
       </Routes>
     </AnimatePresence>
     </BrowserRouter>

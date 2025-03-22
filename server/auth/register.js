@@ -95,7 +95,7 @@ export default async function registerLocal(req , res) {
             message: 'Account created successfully'
         })
 
-        const account_verification_url = `${process.env.HOST}/auth/verifyaccount?uid=${user._id}`
+        const account_verification_url = `${process.env.HOST}/verifyaccount?uid=${user._id}`
 
         const emailBody = `
             <!DOCTYPE html>
