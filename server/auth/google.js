@@ -65,7 +65,7 @@ export async function googleAuthCallback(req, res) {
         })
 
         const JWTPayload = {
-            sub: userData.sub,
+            uid: userData._id,
             email: userData.email
         }
 
@@ -110,7 +110,7 @@ export async function googleAuthCallback(req, res) {
         }
 
         const JWTPayload = {
-            sub: userData.sub,
+            uid: userData._id,
             email: userData.email
         }
 

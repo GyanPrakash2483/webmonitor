@@ -10,6 +10,9 @@ import { googleAuth, googleAuthCallback } from './auth/google.js'
 import loginLocal from './auth/login.js'
 import { forgotPassword } from './auth/forgotpassword.js'
 import { resetPassword } from './auth/resetpassword.js'
+import addSite from './site/addsite.js'
+import getSites from './site/getSites.js'
+import getSite from './site/getSite.js'
 
 //configure environment
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -54,6 +57,18 @@ app.post('/forgotpassword', async (req, res) => {
 
 app.post('/resetpassword', async (req, res) => {
     resetPassword(req, res)
+})
+
+app.post('/site', async (req, res) => {
+    addSite(req, res)
+})
+
+app.get('/site', async (req, res) => {
+    getSites(req, res)
+})
+
+app.get('/site/:siteid', async (req, res) => {
+    getSite(req, res)
 })
 
 // Routes End

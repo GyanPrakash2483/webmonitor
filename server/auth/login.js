@@ -130,7 +130,7 @@ export default async function loginLocal(req, res) {
         if(passwordHash === userInDB.password.passwordHash) {
             // Login successfull, send auth token
             const JWTPayload = {
-                sub: userInDB.sub,
+                uid: userInDB._id,
                 email: userInDB.email
             }
 

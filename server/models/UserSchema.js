@@ -56,6 +56,10 @@ const UserSchema = new mongoose.Schema({
     resetToken: {
         type: String,
         required: false
+    },
+    sites: {
+        type: [String],
+        default: []
     }
 })
 
