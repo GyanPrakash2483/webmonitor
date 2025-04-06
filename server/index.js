@@ -13,6 +13,10 @@ import { resetPassword } from './auth/resetpassword.js'
 import addSite from './site/addsite.js'
 import getSites from './site/getSites.js'
 import getSite from './site/getSite.js'
+import pingController from './site/ping.js'
+import './service/sitechecker.js'
+import './service/unverifiedaccountcleaner.js'
+import siteInfo from './site/siteinfo.js'
 
 //configure environment
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -31,45 +35,29 @@ app.get('/message', (_, res) => {
 
 // Routes
 
-app.post('/auth/register/', async (req, res) => {
-    registerLocal(req, res)
-})
+app.post('/auth/register/', registerLocal)
 
-app.post('/auth/verifyaccount', async (req, res) => {
-    verifyAccount(req, res)
-})
+app.post('/auth/verifyaccount', verifyAccount)
 
-app.get('/auth/google', async (req, res) => {
-    googleAuth(req, res)
-})
+app.get('/auth/google', googleAuth)
 
-app.get('/auth/google/callback', async (req, res) => {
-    googleAuthCallback(req, res)
-})
+app.get('/auth/google/callback', googleAuthCallback)
 
-app.post('/auth/login', async (req, res) => {
-    loginLocal(req, res)
-})
+app.post('/auth/login', loginLocal)
 
-app.post('/forgotpassword', async (req, res) => {
-    forgotPassword(req, res)
-})
+app.post('/forgotpassword', forgotPassword)
 
-app.post('/resetpassword', async (req, res) => {
-    resetPassword(req, res)
-})
+app.post('/resetpassword', resetPassword)
 
-app.post('/site', async (req, res) => {
-    addSite(req, res)
-})
+app.post('/site', addSite)
 
-app.get('/site', async (req, res) => {
-    getSites(req, res)
-})
+app.get('/site', getSites)
 
-app.get('/site/:siteid', async (req, res) => {
-    getSite(req, res)
-})
+app.get('/site/:siteid', getSite)
+
+app.get('/ping/:url', pingController)
+
+app.get('/siteinfo/:siteid', siteInfo)
 
 // Routes End
 

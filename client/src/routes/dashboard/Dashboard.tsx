@@ -21,7 +21,7 @@ function SiteCard(props: {
 
     React.useEffect(() => {
         (async () => {
-            const response = await(await fetch(`http://localhost:3000/site/${siteid}`, {
+            const response = await(await fetch(`/site/${siteid}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,18 +33,28 @@ function SiteCard(props: {
 
             setTitle(siteinfo.title)
             setUrl(siteinfo.site)
-            setLatency(4)
             setUptime(siteinfo.uptime)
+
+            const pingres = await (await fetch(`/ping/${encodeURIComponent(siteinfo.site)}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })).json()
+
+            setLatency(pingres.ping)
+
         })()
-    })
+    }, [title, url, uptime, siteid])
 
     return (
         <div className='max-w-[480px] flex p-6 pb-0 pr-0 mx-auto bg-white shadow-xl my-8 justify-around overflow-visible'>
             <div className='text-left'>
                 <div className='text-2xl'>{title}</div>
-                <div className='text-sm text-[#888888]'>{url}</div>
-                <div className='my-2'>Latency: {latency === -1 ? '...' : latency}ms</div>
-                <WMButton text='Details' />
+                <div className='text-sm text-[#888888]'><a href={url} target="_blank" rel="noopener noreferrer">{url}</a></div>
+                <div className='my-2'>Latency: {latency === -1 ? ' ... ' : latency}ms</div>
+                <a href={`/sitedetail?siteid=${siteid}`}><WMButton text='Details' /></a>
             </div>
             <div className='w-[60%] -mt-4 flex justify-end items-center] overflow-visible'>
                 <PieChart width={250} height={200} >
@@ -126,7 +136,7 @@ function Sites() {
 
         if(newSiteValues.isConfirmed) {
             const data = newSiteValues.value
-            const response = await (await fetch('http://localhost:3000/site', {
+            const response = await (await fetch('/site', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -209,7 +219,7 @@ function Sites() {
 
     React.useEffect(() => {
         (async () => {
-            const res = await (await fetch('http://localhost:3000/site', {
+            const res = await (await fetch('/site', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
