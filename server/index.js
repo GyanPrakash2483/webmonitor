@@ -17,6 +17,8 @@ import pingController from './site/ping.js'
 import './service/sitechecker.js'
 import './service/unverifiedaccountcleaner.js'
 import siteInfo from './site/siteinfo.js'
+import getUserInfo from './user/getUserInfo.js'
+import changeUserName from './user/changeUserName.js'
 
 //configure environment
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -58,6 +60,10 @@ app.get('/site/:siteid', getSite)
 app.get('/ping/:url', pingController)
 
 app.get('/siteinfo/:siteid', siteInfo)
+
+app.get('/userinfo', getUserInfo)
+
+app.patch('/user/changeuname', changeUserName)
 
 // Routes End
 
