@@ -73,7 +73,7 @@ function RegisterMain() {
         }
 
         // Input is valid, proceed with registration
-        const request = await fetch('http://localhost:3000/auth/register', {
+        const request = await fetch('/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
