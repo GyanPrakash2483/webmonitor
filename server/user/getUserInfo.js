@@ -8,7 +8,6 @@ export default async function getUserInfo(req, res) {
     try {
         const auth_token = req.headers.authorization.split(' ')[1]
         const {uid} = jwt.verify(auth_token, process.env.JWT_SECRET)
-
         const userinfo = await User.findById(uid)
 
         if(!userinfo) {

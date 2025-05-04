@@ -19,6 +19,8 @@ import './service/unverifiedaccountcleaner.js'
 import siteInfo from './site/siteinfo.js'
 import getUserInfo from './user/getUserInfo.js'
 import changeUserName from './user/changeUserName.js'
+import changeEmailPreference from './user/emailManagement.js'
+import deleteAccount from './user/deleteAccount.js'
 
 //configure environment
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -64,6 +66,10 @@ app.get('/siteinfo/:siteid', siteInfo)
 app.get('/userinfo', getUserInfo)
 
 app.patch('/user/changeuname', changeUserName)
+
+app.patch('/user/changeemailpreference', changeEmailPreference)
+
+app.delete('/user/deleteaccount', deleteAccount)
 
 // Routes End
 

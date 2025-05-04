@@ -20,6 +20,7 @@ import Login from './routes/login/login.tsx'
 import ForgotPassword from './routes/forgotpassword/forgotpassword.tsx'
 import ResetPassword from './routes/resetpassword/resetpassword.tsx'
 import SiteDetail from './routes/sitedetail/SiteDetail.tsx'
+import Account from './routes/account/account.tsx'
 
 const pageVariants = {
   initial: { opacity: 0, y: 10 },
@@ -50,6 +51,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/forgotpassword" element={<motion.div {...pageVariants}><ForgotPassword /></motion.div>} />
         <Route path="/resetpassword" element={<motion.div {...pageVariants}><ResetPassword /></motion.div>} />
         <Route path="/sitedetail" element={<motion.div {...pageVariants}><SiteDetail /></motion.div>} />
+        <Route path="/account" element={<motion.div {...pageVariants}><Account /></motion.div>} />
       </Routes>
     </AnimatePresence>
     </BrowserRouter>

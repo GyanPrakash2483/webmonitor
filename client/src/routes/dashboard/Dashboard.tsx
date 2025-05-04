@@ -216,29 +216,53 @@ function Sites() {
     }
 
     const [sites, setSites] = React.useState([])
+    const [error, setError] = React.useState<string | null>(null);
 
     React.useEffect(() => {
         (async () => {
-            const res = await (await fetch('/site', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+            try {
+                const res = await (await fetch('/site', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                })).json();
+
+                if (res.sites && Array.isArray(res.sites)) {
+                    setSites(res.sites);
+                } else {
+                    throw new Error('Invalid sites data');
                 }
-            })).json()
-            
-            setSites(res.sites)
-        })()
-    }, [])
+            } catch (err) {
+                console.error(err);
+                setError('No Sites Found.');
+            }
+        })();
+    }, []);
+
+    if (error) {
+        return (
+            <div className='text-center min-h-[60vh]'>
+                <div className="text-black">{error}</div>
+                <WMButton text='Add New' clickHandler={addNewSite} />
+            </div>
+        ) 
+    }
 
     return (
-        <div className='text-center  min-h-[60vh]'>
-            {sites.map((siteid, index) => {
-                return <SiteCard id={siteid} key={index} />
-            })}
+        <div className='text-center min-h-[60vh]'>
+            {sites.length > 0 ? (
+                sites.map((siteid, index) => {
+                    if (!siteid) return null; // Skip invalid site IDs
+                    return <SiteCard id={siteid} key={index} />
+                })
+            ) : (
+                <div>No sites found.</div>
+            )}
             <WMButton text='Add New' clickHandler={addNewSite} />
         </div>
-    )
+    );
 }
 
 export default function Dashboard() {
